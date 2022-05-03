@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import styled from 'styled-components'
+import Header from './components/Header';
+import Main from './components/Main';
+
+const AppWrapper = styled.div`
+width:100%;
+min-height:100vh;
+background:${props => props.currentTheme === 'light' ? props.theme.colors.bg.light : props.theme.colors.bg.dark};
+`
 
 function App() {
+
+  const [currentTheme, setCurrentTheme] = useState('light')
+  const toggleTheme = () => {
+    setCurrentTheme(currentTheme === 'light' ? 'dark' : 'light')
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppWrapper currentTheme={currentTheme}>
+      <Header currentTheme={currentTheme} toggleTheme={toggleTheme} />
+      <Main currentTheme={currentTheme} />
+    </AppWrapper >
   );
 }
 
