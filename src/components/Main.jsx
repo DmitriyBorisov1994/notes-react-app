@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { Container } from './UI/Container'
 import AddNote from './AddNote'
@@ -36,7 +36,14 @@ const Main = (props) => {
       date: `${new Date().getDate() < 10 ? '0' + new Date().getDate() : new Date().getDate()}.${(new Date().getMonth() + 1) < 10 ? '0' + (new Date().getMonth() + 1) : (new Date().getMonth() + 1)}.${new Date().getFullYear()}`
    }
 
-   const [notes, setNotes] = useState([initialNote])
+   const [notes, setNotes] = useState(() => {
+      const storageNotes = localStorage.getItem('notes')
+      return storageNotes ? JSON.parse(storageNotes) : [initialNote]
+   })
+
+   useEffect(() => {
+      localStorage.setItem('notes', JSON.stringify(notes))
+   }, [notes])
 
    function createNote(newNote) {
       setNotes([...notes, newNote])
