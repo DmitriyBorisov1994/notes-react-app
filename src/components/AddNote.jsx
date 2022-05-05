@@ -4,6 +4,7 @@ import { IoAdd, IoCloseOutline } from 'react-icons/io5'
 import Button from './UI/Button'
 import { StyledTextarea } from './UI/StyledTextarea'
 
+
 const AddNote = ({ createNote, ...props }) => {
    const [note, setNote] = useState({ text: '' })
    let newNoteElement = useRef(null)
@@ -22,13 +23,13 @@ const AddNote = ({ createNote, ...props }) => {
    }
 
    return (
-      <Flex align={'space-between'}>
+      <Flex justify={'space-between'} align={'center'} flex={'1 1 auto'}>
          <StyledTextarea
             ref={newNoteElement}
             value={note.text}
             onChange={() => setNote({ ...note, text: newNoteElement.current.value })}
          />
-         <div style={{ display: 'flex', alignSelf: 'flex-end', gap: '.5rem' }}>
+         <Flex justify={'flex-end'} align={'center'} flex={'1 1 100px'} gap={'.5rem'} wrap={'no-wrap'}>
             <Button onClick={() => setNote({ text: '' })}
                currentTheme={props.currentTheme}>
                <IoCloseOutline size={'1.5rem'} />
@@ -37,7 +38,7 @@ const AddNote = ({ createNote, ...props }) => {
                currentTheme={props.currentTheme}>
                <IoAdd size={'1.5rem'} />
             </Button>
-         </div>
+         </Flex>
       </Flex>
    )
 }
