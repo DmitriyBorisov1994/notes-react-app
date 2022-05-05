@@ -19,7 +19,7 @@ const Note = ({ note, removeNote, edit, setEdit, submitUpdate, ...props }) => {
       return (
             <StyledNote {...props} >
                   <Flex direction={'column'} style={{ height: '100%' }}>
-                        <Title align={'center'} padding={'1rem 0rem'} size={'1.5rem'} underline={`1px solid #757575`}>
+                        <Title align={'center'} padding={'1rem 0rem'} size={'1.5rem'} underline={`2px solid #757575`}>
                               {note.date}
                         </Title>
                         {edit.id

@@ -25,8 +25,8 @@ cursor:pointer;
       ? props.theme.colors.accent.dark
       : props.theme.colors.accent.light};
       background-color:${props => props.currentTheme === 'light'
-      ? props.theme.colors.component.light
-      : props.theme.colors.component.dark};
+      ? props.theme.colors.accent.lightHover
+      : props.theme.colors.accent.darkHover};
 }
 `
 

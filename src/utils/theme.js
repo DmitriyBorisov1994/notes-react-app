@@ -1,17 +1,18 @@
 export const theme = {
    colors: {
       bg: {
-         light: '#CFD8DC',
-         main: '#607D8B',
-         dark: '#455A64',
+         light: '#ffecb3',
+         dark: '#263238',
       },
       component: {
-         light: '#eceff1',
-         dark: '#607D8B',
+         light: '#ffe082',
+         dark: '#455a64',
       },
       accent: {
-         dark: '#ffa000',
+         dark: '#455a64',
          light: '#ffecb3',
+         darkHover: '#37474f',
+         lightHover: '#fff8e1',
       },
       text: {
          dark: '#212121',

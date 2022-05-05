@@ -8,4 +8,6 @@ flex:1 1 90%;
 min-width:250px;
 border:none;
 outline:none;
+&:hover{box-shadow:0px 0px 6px ${props => props.theme.divider};}
+&:focus{box-shadow:0px 0px 6px ${props => props.theme.divider};}
 `
