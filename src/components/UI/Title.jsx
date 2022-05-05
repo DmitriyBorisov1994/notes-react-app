@@ -6,6 +6,16 @@ const StyledTitle = styled.h1`
    text-align:${props => props.align || 'left'};
    padding:${props => props.padding || '0 0 0 0'};
    border-bottom:${props => props.underline || 'none'};
+
+   @media${props => props.theme.media.tablet}{
+      width:100%;
+      text-align:center;
+      
+   }
+   @media${props => props.theme.media.phone}{
+      width:100%;
+      text-align:center;
+   }
 `
 
 const Title = ({ children, ...props }) => {

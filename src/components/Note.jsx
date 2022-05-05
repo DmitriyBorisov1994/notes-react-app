@@ -4,18 +4,8 @@ import Button from './UI/Button'
 import Flex from './UI/Flex'
 import { IoArchive, IoCreateOutline, IoCheckmarkOutline } from 'react-icons/io5'
 import Title from './UI/Title'
-
-const StyledNote = styled.div`
-width:100%;
-background-color:${props => props.currentTheme === 'light'
-            ? props.theme.colors.accent.light
-            : props.theme.colors.accent.dark};
-color:${props => props.currentTheme === 'light'
-            ? props.theme.colors.text.dark
-            : props.theme.colors.text.light};
-padding:.5rem;
-border-radius:0.5rem;
-`
+import { StyledNote } from './UI/StyledNote'
+import { StyledNoteTextarea } from './UI/StyledNoteTextare'
 
 const ButtonsWrapper = styled.div`
 display:flex;
@@ -24,21 +14,6 @@ flex:0 0 auto;
 align-self:flex-end;
 gap: .5rem;
 `
-
-const StyledNoteTextarea = styled.textarea`
-resize:none;
-padding:.5rem;
-border-radius:0.5rem;
-width:100%;
-min-height:100px;
-border:none;
-outline:none;
-background:transparent;
-color:${props => props.currentTheme === 'light'
-            ? props.theme.colors.text.dark
-            : props.theme.colors.text.light};
-`
-
 const Note = ({ note, removeNote, edit, setEdit, submitUpdate, ...props }) => {
       let updateNoteElement = useRef(null)
       return (

@@ -1,48 +1,28 @@
 import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
 import { Container } from './UI/Container'
 import AddNote from './AddNote'
 import NoteList from './NoteList'
-
-const StyledMain = styled.main`
-padding:1rem 0rem;
-@media ${props => props.theme.media.tablet}{
-   padding:2rem 0rem;
-};
-@media ${props => props.theme.media.phone}{
-   padding:2rem 0rem;
-};
-`
-const StyledP = styled.p`
-padding:1rem 0rem;
-text-align:center;
-font-size:2rem;
-color:${props => props.currentTheme === 'light'
-      ? props.theme.colors.text.dark
-      : props.theme.colors.text.light};
-@media ${props => props.theme.media.tablet}{
-   padding:2rem 0rem;
-};
-@media ${props => props.theme.media.phone}{
-   padding:2rem 0rem;
-};
-`
+import { StyledMain } from './UI/StyledMain'
+import { NoNotesMessage } from './UI/NoNotesMessage'
+import { getDateString } from '../utils/getDateString'
+import { Storage } from '../utils/storage'
 
 const Main = (props) => {
 
    const initialNote = {
       text: 'Привет! Я тестовая заметка. Меня можно удалить или отредактировать, нажав на соответствующие кнопки ниже!',
       id: Date.now(),
-      date: `${new Date().getDate() < 10 ? '0' + new Date().getDate() : new Date().getDate()}.${(new Date().getMonth() + 1) < 10 ? '0' + (new Date().getMonth() + 1) : (new Date().getMonth() + 1)}.${new Date().getFullYear()}`
+      date: getDateString()
    }
 
+   const storageNotes = new Storage('notes')
+
    const [notes, setNotes] = useState(() => {
-      const storageNotes = localStorage.getItem('notes')
-      return storageNotes ? JSON.parse(storageNotes) : [initialNote]
+      return storageNotes.storageItems ? storageNotes.getItems() : [initialNote]
    })
 
    useEffect(() => {
-      localStorage.setItem('notes', JSON.stringify(notes))
+      storageNotes.setItems(notes)
    }, [notes])
 
    function createNote(newNote) {
@@ -52,7 +32,7 @@ const Main = (props) => {
    const updateNote = (id, newText) => {
       setNotes(prev => prev.map(note => (note.id === id ? { ...note, text: newText } : note)))
    }
-   //{ ...note, text: newNoteElement.current.value })
+
    function removeNote(id) {
       setNotes(notes.filter(todo => todo.id !== id))
    }
@@ -62,7 +42,7 @@ const Main = (props) => {
          <Container>
             <AddNote createNote={createNote} currentTheme={props.currentTheme} />
             {!notes.length
-               ? <StyledP currentTheme={props.currentTheme}>У Вас нет заметок</StyledP>
+               ? <NoNotesMessage currentTheme={props.currentTheme}>У Вас нет заметок</NoNotesMessage>
                : <NoteList
                   notes={notes}
                   currentTheme={props.currentTheme}

@@ -1,13 +1,7 @@
 import React, { useState } from 'react';
-import styled from 'styled-components'
 import Header from './components/Header';
 import Main from './components/Main';
-
-const AppWrapper = styled.div`
-width:100%;
-min-height:100vh;
-background:${props => props.currentTheme === 'light' ? props.theme.colors.bg.light : props.theme.colors.bg.dark};
-`
+import { AppWrapper } from './components/UI/AppWrapper';
 
 function App() {
 

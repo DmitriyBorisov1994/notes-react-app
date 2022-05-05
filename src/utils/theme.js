@@ -10,7 +10,7 @@ export const theme = {
          dark: '#607D8B',
       },
       accent: {
-         dark: '#ff6f00',
+         dark: '#ffa000',
          light: '#ffecb3',
       },
       text: {

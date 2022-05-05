@@ -1,17 +1,8 @@
 import React, { useRef, useState } from 'react'
 import Flex from './UI/Flex'
 import { IoAdd, IoCloseOutline } from 'react-icons/io5'
-import styled from 'styled-components'
 import Button from './UI/Button'
-
-const StyledTextarea = styled.textarea`
-resize:none;
-padding:.5rem;
-border-radius:0.5rem;
-width:100%;
-border:none;
-outline:none;
-`
+import { StyledTextarea } from './UI/StyledTextarea'
 
 const AddNote = ({ createNote, ...props }) => {
    const [note, setNote] = useState({ text: '' })
@@ -31,20 +22,18 @@ const AddNote = ({ createNote, ...props }) => {
    }
 
    return (
-      <Flex align={'center'}>
+      <Flex align={'space-between'}>
          <StyledTextarea
             ref={newNoteElement}
             value={note.text}
             onChange={() => setNote({ ...note, text: newNoteElement.current.value })}
          />
-         <div style={{ display: 'flex', alignSelf: 'flex-end' }}>
+         <div style={{ display: 'flex', alignSelf: 'flex-end', gap: '.5rem' }}>
             <Button onClick={() => setNote({ text: '' })}
-               margin={'0px 0px 0px 1rem'}
                currentTheme={props.currentTheme}>
                <IoCloseOutline size={'1.5rem'} />
             </Button>
             <Button onClick={addNewNote}
-               margin={'0px 0px 0px 1rem'}
                currentTheme={props.currentTheme}>
                <IoAdd size={'1.5rem'} />
             </Button>
